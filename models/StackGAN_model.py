@@ -80,13 +80,13 @@ class StackGANModel(BaseModel):
 
             if self.opt.print_weights:
                 for key in self.netE1.state_dict().keys():
-                    print key, 'random_init, mean,std:', torch.mean(self.netE1.state_dict()[key]),torch.std(self.netE1.state_dict()[key])
+                    print (key, 'random_init, mean,std:', torch.mean(self.netE1.state_dict()[key]),torch.std(self.netE1.state_dict()[key]))
                 for key in self.netDE1.state_dict().keys():
-                    print key, 'random_init, mean,std:', torch.mean(self.netDE1.state_dict()[key]),torch.std(self.netDE1.state_dict()[key])
+                    print (key, 'random_init, mean,std:', torch.mean(self.netDE1.state_dict()[key]),torch.std(self.netDE1.state_dict()[key]))
 
 
         if not self.isTrain:
-            print "Load generators from their pretrained models..."
+            print ("Load generators from their pretrained models...")
             if opt.no_Style2Glyph:
                 if self.opt.conv3d:
                      self.load_network(self.netG_3d, 'G_3d', opt.which_epoch)
@@ -109,7 +109,7 @@ class StackGANModel(BaseModel):
 
         if self.isTrain:
             if opt.continue_train:
-                print "Load StyleNet from its pretrained model..."
+                print ("Load StyleNet from its pretrained model...")
                 self.load_network(self.netE1, 'E1', opt.which_epoch1)
                 self.load_network(self.netDE1, 'DE1', opt.which_epoch1)
                 self.load_network(self.netD1, 'D1', opt.which_epoch1)
@@ -542,13 +542,13 @@ class StackGANModel(BaseModel):
 
 
     def get_current_errors(self):
-        return OrderedDict([('G1_GAN', self.loss_G1_GAN.data[0]),
-                ('G1_L1', self.loss_G1_L1.data[0]),
-                ('G1_MSE_gt', self.loss_G1_MSE_gt.data[0]),
-                ('G1_MSE', self.loss_G1_MSE_rgb2gay.data[0]),
-                ('D1_real', self.loss_D1_real.data[0]),
-                ('D1_fake', self.loss_D1_fake.data[0]),
-                ('G_L1', self.loss_G_L1.data[0])
+        return OrderedDict([('G1_GAN', self.loss_G1_GAN.data.item()),
+                ('G1_L1', self.loss_G1_L1.data.item()),
+                ('G1_MSE_gt', self.loss_G1_MSE_gt.data.item()),
+                ('G1_MSE', self.loss_G1_MSE_rgb2gay.data.item()),
+                ('D1_real', self.loss_D1_real.data.item()),
+                ('D1_fake', self.loss_D1_fake.data.item()),
+                ('G_L1', self.loss_G_L1.data.item())
         ])
 
 

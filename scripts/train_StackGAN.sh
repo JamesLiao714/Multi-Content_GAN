@@ -12,9 +12,9 @@
 #=====================================
 
 DATA=$1
-DATASET="../datasets/public_web_fonts/${DATA}/"
+DATASET="datasets/public_web_fonts/${DATA}/"
 experiment_dir="${DATA}_MCGAN_train"
-base_dir="../datasets/Capitals64/BASE"
+base_dir="datasets/Capitals64/BASE"
 NAME="${experiment_dir}"
 MODEL=StackGAN
 MODEL_G=resnet_6blocks

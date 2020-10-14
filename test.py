@@ -40,8 +40,8 @@ for i, data in enumerate(dataset):
     img_path = model.get_image_paths()
     print('process image... %s' % img_path)
     scores = visualizer.eval_current_result(visuals)
-    print "ssim: %s"%(scores[0])
-    print "MSE: %s"%(scores[1])
+    print( "ssim: %s"%(scores[0]))
+    print( "MSE: %s"%(scores[1]))
     ssim_score += scores[0]
     mse_score += scores[1]
     visualizer.save_images(webpage, visuals, img_path)

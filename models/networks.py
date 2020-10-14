@@ -15,14 +15,14 @@ from torch import index_select, LongTensor
 
 def weights_init(m):
     classname = m.__class__.__name__
-    print "classname",classname
+    print ("classname",classname)
     if classname.find('Conv') != -1:
-        print "in random conv"
+        print ("in random conv")
         m.weight.data.normal_(0.0, 0.02)
         if hasattr(m.bias, 'data'):
             m.bias.data.fill_(0)
     elif classname.find('BatchNorm2d') != -1:
-        print "in random batchnorm"
+        print ("in random batchnorm")
         m.weight.data.normal_(1.0, 0.02)
         m.bias.data.fill_(0)
 
@@ -75,7 +75,7 @@ def define_G_3d(input_nc, output_nc, norm='batch', groups=26, ksize=3,padding=1,
     netG_3d = ResnetGenerator_3d_conv(input_nc, output_nc, norm_type=norm, groups=groups, ksize=ksize, padding=padding, gpu_ids=gpu_ids)
 
     if len(gpu_ids) > 0:
-        netG_3d.cuda(device_id=gpu_ids[0])
+        netG_3d.cuda(gpu_ids[0])
 
     netG_3d.apply(weights_init)
     return netG_3d
@@ -91,7 +91,7 @@ def define_G(input_nc, output_nc, ngf, which_model_netG, norm='batch', use_dropo
 
     if use_gpu:
         assert(torch.cuda.is_available())
-    print which_model_netG
+    print( which_model_netG)
     if which_model_netG == 'resnet_9blocks':
         netG = ResnetGenerator(input_nc, output_nc, ngf, norm_layer=norm_layer, use_dropout=use_dropout, n_blocks=9, norm_type=norm, gpu_ids=gpu_ids)
     elif which_model_netG == 'resnet_6blocks':
@@ -106,7 +106,7 @@ def define_G(input_nc, output_nc, ngf, which_model_netG, norm='batch', use_dropo
 
 
     if len(gpu_ids) > 0:
-        netG.cuda(device_id=gpu_ids[0])
+        netG.cuda(gpu_ids[0])
 
     netG.apply(weights_init)
     return netG
@@ -121,7 +121,7 @@ def define_Enc(input_nc, output_nc, ngf, which_model_netG, norm='batch', use_dro
 
     if use_gpu:
         assert(torch.cuda.is_available())
-    print which_model_netG
+    print (which_model_netG)
     if which_model_netG == 'resnet_9blocks':
         netG = ResnetEncoder(input_nc, output_nc, ngf, norm_layer=norm_layer, use_dropout=use_dropout, n_blocks=9, norm_type=norm, gpu_ids=gpu_ids)
     elif which_model_netG == 'resnet_6blocks':
@@ -134,7 +134,7 @@ def define_Enc(input_nc, output_nc, ngf, which_model_netG, norm='batch', use_dro
         print('encoder model name [%s] is not recognized' % which_model_netG)
 
     if len(gpu_ids) > 0:
-        netG.cuda(device_id=gpu_ids[0])
+        netG.cuda(gpu_ids[0])
 
     netG.apply(weights_init)
     return netG
@@ -150,7 +150,7 @@ def define_Dec(input_nc, output_nc, ngf, which_model_netG, norm='batch', use_dro
 
     if use_gpu:
         assert(torch.cuda.is_available())
-    print which_model_netG
+    print( which_model_netG)
     if which_model_netG == 'resnet_9blocks':
         netG = ResnetDecoder(input_nc, output_nc, ngf, norm_layer=norm_layer, use_dropout=use_dropout, n_blocks=9, norm_type=norm, gpu_ids=gpu_ids)
     elif which_model_netG == 'resnet_6blocks':
@@ -163,7 +163,7 @@ def define_Dec(input_nc, output_nc, ngf, which_model_netG, norm='batch', use_dro
         print('Decoder model name [%s] is not recognized' % which_model_netG)
 
     if len(gpu_ids) > 0:
-        netG.cuda(device_id=gpu_ids[0])
+        netG.cuda(gpu_ids[0])
 
     netG.apply(weights_init)
     return netG
@@ -185,7 +185,7 @@ def define_D(input_nc, ndf, which_model_netD,
         print('Discriminator model name [%s] is not recognized' %
               which_model_netD)
     if use_gpu:
-        netD.cuda(device_id=gpu_ids[0])
+        netD.cuda(gpu_ids[0])
     netD.apply(weights_init)
     return netD
 
@@ -195,11 +195,11 @@ def define_preNet(input_nc, nif=32 ,which_model_preNet='none', norm='batch', gpu
     norm_layer = get_norm_layer(norm_type=norm)
     use_gpu = len(gpu_ids) > 0
     if which_model_preNet == '2_layers':
-        print "2 layers convolution applied before being fed into the discriminator"
+        print ("2 layers convolution applied before being fed into the discriminator")
         preNet = InputTransformation(input_nc, nif, norm_layer, gpu_ids)
         if use_gpu:
             assert(torch.cuda.is_available())
-            preNet.cuda(device_id=gpu_ids[0])
+            preNet.cuda(gpu_ids[0])
         preNet.apply(weights_init)
     return preNet
 

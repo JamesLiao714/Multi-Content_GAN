@@ -106,7 +106,7 @@ class Visualizer():
     # save image to the disk
     def save_images(self, webpage, visuals, image_path):
         image_dir = webpage.get_image_dir()
-        print "save to:", image_dir
+        print( "save to:", image_dir)
         short_path = ntpath.basename(image_path[0])
         name = os.path.splitext(short_path)[0]
 
@@ -165,7 +165,7 @@ class Visualizer():
                             img = misc.imread(img_dir+'/'+im)
                             im_size = img.shape[0]
                             epoch = im.split('_')[0]
-                            print epoch, i
+                            print (epoch, i)
                             # shutil.copyfile(os.path.join(img_dir,im),"~/tmp_ffmpeg/im%04d.png"%i)
                             os.system("cp %s ~/tmp_ffmpeg/%s/im%04d.png 2>&1|tee ~/tmp_ffmpeg/log.txt"%(os.path.join(img_dir.replace("&","\&"),im),end_,i))
                             i+=1

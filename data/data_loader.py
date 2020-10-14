@@ -32,7 +32,7 @@ def normalize_stack(input,val=0.5):
     mean = (val,)*len_
     std = (val,)*len_
     t_normal_stack = transforms.Compose([
-        transforms.Normalize(mean,std)])
+                transforms.Normalize((0.5,), (0.5,)),])
     return t_normal_stack(input)
 
 

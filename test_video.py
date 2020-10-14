@@ -41,7 +41,7 @@ for epoch in epoch_list:
 	webpage.save()
 
 video_path = os.path.join(opt.results_dir, opt.name, '%s' % (opt.phase))
-print "save to:%s"%video_path
+print ("save to:%s"%video_path)
 if not os.path.isdir(video_path):
 	os.mkdir(video_path)
 visualizer.save_video(video_path)
