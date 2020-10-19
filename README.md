@@ -1,4 +1,6 @@
 # MC-GAN in PyTorch on windows
+### 期末專題 
+### 指導教授: 戴文凱
 
 <img src="https://people.eecs.berkeley.edu/~sazadi/MCGAN/datasets/ft51_1_fake_B.gif" width="90%"/>
 
@@ -8,9 +10,6 @@
 - Python 3.6
 - GPU: NVIDIA GeForce RTX™ 2080
 - CUDA10.1+ CuDNN
-
-## Getting Started
-
 
 ### MC-GAN train/test
 - Download our gray-scale 10K font data set:
