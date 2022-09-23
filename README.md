@@ -2,7 +2,7 @@
 ### 期末專題 
 ### 指導教授: 戴文凱
 
-<img src="https://people.eecs.berkeley.edu/~sazadi/MCGAN/datasets/ft51_1_fake_B.gif" width="90%"/>
+![](https://i.imgur.com/WoIQRTS.png)
 
 
 ## Prerequisites:
